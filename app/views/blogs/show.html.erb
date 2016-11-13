@@ -1,13 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
+  <h2><%= @blog.title %></h2>
 </p>
 
 <p>
-  <strong>Body:</strong>
-  <%= @blog.body.html_safe %>
+  <%= RedCloth.new(@blog.body).to_html.html_safe %>
 </p>
 
 <p>
@@ -20,8 +18,10 @@
   <%= @blog.community_id %>
 </p>
 
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+<% if @blog.user_id == current_user.id %>
+	<%= link_to 'Edit', edit_blog_path(@blog) %> |
+	<%= link_to 'Back', blogs_path %>
+<% end %>
 
 <div id="new_comment">
 	<%= render 'comments/form', comment: @comment, blog_id: @blog.id %>

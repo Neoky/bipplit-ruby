@@ -37,8 +37,11 @@
           </button>
           <%= link_to "Bipplit", "/", :class=>"navbar-brand" %>
         </div>
-        <div class="nav navbar-nav">
+        <div class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
+            <li>
+              <%= link_to current_user.email, "#" %>
+            </li>
 	          <li class="">
 	            <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
 	          </li>

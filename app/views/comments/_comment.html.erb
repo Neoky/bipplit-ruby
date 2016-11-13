@@ -1,1 +1,8 @@
-<%= comment.body %><br />
+<div id="comment_<%= comment.id %>">
+	<%= RedCloth.new(comment.body).to_html %>
+  <% if comment.user_id == current_user.id %>
+    <br />
+    <%= link_to 'Edit', edit_comment_path(comment) %>
+    <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>

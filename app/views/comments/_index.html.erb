@@ -2,29 +2,13 @@
 
 <h1>Comments</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Body</th>
-      <th>User</th>
-      <th>Blog</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @comments.each do |comment| %>
-      <tr>
-        <td><%= comment.body %></td>
-        <td><%= comment.user_id %></td>
-        <td><%= comment.blog_id %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% @comments.each do |comment| %>
+  <div id="comment_<%= comment.id %>">
+    <%= RedCloth.new(comment.body).to_html.html_safe %>
+    <% if comment.user_id == current_user.id %>
+      <br />
+      <%= link_to 'Edit', edit_comment_path(comment) %>
+      <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
+  </div>
+<% end %>
