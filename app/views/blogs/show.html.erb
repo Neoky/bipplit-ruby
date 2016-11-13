@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @blog.body.html_safe %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @blog.user_id %>
+</p>
+
+<p>
+  <strong>Community:</strong>
+  <%= @blog.community_id %>
+</p>
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>
+
+<div id="new_comment">
+	<%= render 'comments/form', comment: @comment, blog_id: @blog.id %>
+</div>
+
+<div id="comments">
+	<%= render 'comments/index', blog: @blog, comments: @comments %>
+</div>
