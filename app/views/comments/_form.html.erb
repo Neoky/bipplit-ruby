@@ -11,14 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :body, "Reply:" %>
-    <%= f.text_area :body %>
+  <div class="field form-group">
+    <%= f.text_area :body, :class=>"form-control" %>
   </div>
 
   <%= f.hidden_field :blog_id %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Reply", :class=>"btn btn-default" %>
   </div>
 <% end %>
