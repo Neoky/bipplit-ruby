@@ -10,7 +10,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @comments = Comment.where(blog_id: params[:id])
+    @comments = Comment.where(blog_id: params[:id]).order(created_at: :desc)
     @comment = Comment.new
     @comment.blog_id = @blog.id
   end

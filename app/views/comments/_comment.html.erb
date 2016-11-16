@@ -1,5 +1,5 @@
 <div id="comment_<%= comment.id %>">
-	<%= RedCloth.new(comment.body).to_html %>
+	<%= RedCloth.new(comment.body).to_html.gsub(/<\/?p>/, '').html_safe %>
   <% if comment.user_id == current_user.id %>
     <br />
     <%= link_to 'Edit', edit_comment_path(comment) %>
